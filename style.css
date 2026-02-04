@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.heart-img {
+    position: absolute;
+    width: 40px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    animation: float 5s infinite ease-in-out; /* Add a floating animation */
+    pointer-events: none; /* Prevent interaction */
+}
+
+.rose-img {
+    position: absolute;
+    width: 200px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    pointer-events: none; /* Prevent interaction */
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* Slight upward movement */
+    }
+}
+
+/* === PHOTO GALLERY STYLING === */
+.gallery-container {
+    margin-right: 100px; /* Ensure it's further left from heart */
+}
+
+.gallery {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border: 5px solid #f08080; /* Adds a border around the gallery container */
+    border-radius: 10px; /* Optional: rounded corners for the container */
+}
+
+.gallery > img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Adds a shadow effect for more definition */
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    z-index: 0;
+}
+
+.gallery > img.active {
+    opacity: 1;
+    z-index: 10;
+    transform: none;
+}
+
+.gallery img:last-child {
+    animation-name: slide, z-order-last;
+}
+
+.gallery > img:nth-child(1) {
+    animation-delay: calc(0*var(--d));
+    --r: 16deg;
+}
+
+.gallery > img:nth-child(2) {
+    animation-delay: calc(-0.2*var(--d));
+    --r: -1deg;
+}
+
+.gallery > img:nth-child(3) {
+    animation-delay: calc(-0.4*var(--d));
+    --r: -19deg;
+}
+
+.gallery > img:nth-child(4) {
+    animation-delay: calc(-0.6*var(--d));
+    --r: 6deg;
+}
+
+.gallery > img:nth-child(5) {
+    animation-delay: calc(-0.8*var(--d));
+    --r: -8deg;
+}
+
+@keyframes slide {
+    10% {
+        transform: translateX(50%) rotate(var(--r));
+    }
+    0%, 100%, 20% {
+        transform: translateX(0%) rotate(var(--r));
+    }
+}
+
+@keyframes z-order {
+    10%, 20% {
+        z-index: 1;
+    }
+    80% {
+        z-index: 2;
+    }
+}
+
+@keyframes z-order-last {
+    10%, 20% {
+        z-index: 1;
+    }
+    90% {
+        z-index: 2;
+    }
+}
+
+/* === LOVE LETTER STYLING === */
+#message-container {
+    background-color: #ffebeb;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 90%; /* Adjust width as needed */
+    max-width: 600px; /* Limit maximum width */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+#message-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === TITLE SHINE EFFECT === */
+#hedlinecontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+#shine {
+    font-size: 60px;
+    font-weight: bold;
+    color: rgba(255, 0, 102, 0.3);
+    z-index: 10;
+    background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+    -webkit-background-size: 150px;
+    -webkit-background-clip: text;
+    -webkit-animation-name: shine;
+    -webkit-animation-duration: 3s; /* Adjust the duration as needed */
+    -webkit-animation-iteration-count: infinite;
+    text-shadow: 0 0px 0px rgba(233, 85, 189, 0.419);
+}
+
+@-webkit-keyframes shine {
+    0%, 10% {
+        background-position: -1000px;
+    }
+    20% {
+        background-position: top left;
+    }
+    90% {
+        background-position: top right;
+    }
+    100% {
+        background-position: 1000px;
+    }
+}
+
+/* Media Query for Smaller Screens */
+@media only screen and (max-width: 600px) {
+    #shine {
+        font-size: 22px;
+    }
+    #hedlinecontainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+
+    .gallery {
+        --d: 10s;
+        display: grid;
+        place-items: center;
+        width: 250px;
+        margin-left: 60px;
+    }
+}
+
+#solid-heart {
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: transform 0.2s ease, color 0.2s ease; /* Smooth transition for hover effects */
+}
+
+#solid-heart:hover {
+    transform: scale(1.1); /* Slightly enlarge the heart on hover */
+    color: #ff0000; /* Change heart color to a brighter red on hover */
+}
+
+#solid-heart-container {
+    display: flex;
+    justify-content: center; /* Ensure it's centered */
+    margin-right: 200px; /* Adjust as needed */
+}
+
+body{
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #fae1dd;
+}
+
+.valentines{
+    position: relative;
+    top: 50px;
+    cursor: pointer;
+    animation: up 3s linear infinite;
+}
+.envelope{
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #f08080;
+    display: grid;
+    place-items: center;
+}
+.envelope::before{
+    content: '';
+    position: absolute;
+    width: 212px;
+    height: 212px;
+    background: #f08080;
+    transform: rotate(45deg);
+    top: -105px;
+    left: 44px;
+    border-radius: 30px 0 0 0;
+}
+.front{
+    position: absolute;
+    border-right: 180px solid #f4978e;
+    border-top: 95px solid transparent;
+    border-bottom: 100px solid transparent;
+    left: 120px;
+    top: 5px;
+    width: 0;
+    height: 0;
+    z-index: 10;
+}
+.front::before{
+    position: absolute;
+    content: '';
+    border-left: 300px solid #fda996;
+    border-top: 195px solid transparent;
+    left: -120px;
+    top: -95px;
+}
+.card{
+    position: relative;
+    width: 250px;
+    height: 180px;
+    background: #fff;
+    border-radius: 2px;
+    display: grid;
+    place-items: center;
+    transition: 1s;
+}
+.card::before{
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid #003049;
+    border-style: dashed;
+}
+.valentines:hover .card{
+    transform: translateY(-100px);
+}
+.card .text{
+    font-family: 'Brush Script MT', cursive;
+    font-size: 28px;
+    text-align: center;
+    line-height: 25px;
+    color: #003049;
+}
+.card .heart{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background: red;
+    bottom: 20px;
+    transform: rotate(45deg);
+    border-radius: 50% 0 0 50%;
+}
+.card .heart::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: red;
+    border-radius: 0 50% 50% 0;
+    right: 0;
+    transform: rotate(-90deg);
+    transform-origin: top;
+}
+.card .heart::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: red;
+    right: -18px;
+}
+@keyframes up{
+    0%, 100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-30px);
+    }
+}
+.valentines::before{
+    content: '';
+    position: absolute;
+    width: 330px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .3);
+    top: 265px;
+    left: -15px;
+    animation: scale 3s linear infinite;
+}
+@keyframes scale{
+    0%, 100%{
+        transform: scaleX(1);
+    }
+    50%{
+        transform: scaleX(.85);
+    }
+}
+
+
+
+
