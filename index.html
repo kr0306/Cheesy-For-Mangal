@@ -38,32 +38,48 @@
             z-index: 1;
         }
         
-        /* Romantic heading style */
+        /* Romantic heading style - CENTERED AT TOP */
         .romantic-heading {
             font-family: 'Brush Script MT', cursive;
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             color: #ff1493;
-            text-shadow: 2px 2px 4px rgba(255,105,180,0.3);
-            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(255,105,180,0.5);
             animation: fadeIn 2s ease-in;
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            background: white;
+            padding: 10px 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(255,105,180,0.3);
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         
+        /* Days counter - BOTTOM RIGHT, STANDS OUT */
         .days-counter {
-            font-size: 1.2rem;
-            color: #ff69b4;
-            font-weight: 600;
-            margin-top: 0.5rem;
+            position: fixed;
+            bottom: 80px;
+            right: 30px;
+            font-size: 1.4rem;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(255,105,180,0.5);
+            z-index: 100;
             animation: pulse 2s ease-in-out infinite;
         }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
     </style>
 </head>
@@ -74,15 +90,12 @@
 
 <body class="flex justify-center items-center w-screen h-screen bg-pink-100">
 
+    <!-- Romantic Heading - CENTERED AT TOP -->
+    <h1 class="romantic-heading">For my dear Mangal 💕</h1>
+
     <div class="flex gap-10 items-center justify-center">
         <!-- Photo Gallery (shifted left) -->
         <div class="gallery-container">
-            <!-- Romantic Heading Above Photo -->
-            <div style="text-align: center; margin-bottom: 20px;">
-                <h1 class="romantic-heading">For my dear Mangal 💕</h1>
-                <p class="days-counter" id="daysCounter">Loading...</p>
-            </div>
-            
             <div class="gallery">
                 <img src="Images/image1.jpg">
                 <img src="Images/image2.jpg">
@@ -127,6 +140,9 @@
     <img src="Images/pinkheart.png" class="heart-img" style="top: 90%; left: 20%;">
     <img src="Images/pinkheart.png" class="heart-img" style="top: 2%; left: 70%;">
     <img src="Images/pinkheart.png" class="heart-img" style="top: 2%; left: 33%;">  
+
+    <!-- Days Counter - BOTTOM RIGHT, POPS OUT -->
+    <div class="days-counter" id="daysCounter">Loading...</div>
 
     <!-- Music Control Button - BOTTOM LEFT -->
     <div style="position: fixed; bottom: 20px; left: 20px; z-index: 100;">
@@ -181,7 +197,7 @@
             const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
             
             document.getElementById('daysCounter').textContent = 
-                `${diffDays} beautiful days together ❤️`;
+                `${diffDays} days together ❤️`;
         }
         
         // Falling hearts animation
