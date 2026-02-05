@@ -13,6 +13,97 @@
     <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Protest+Strike&display=swap" rel="stylesheet">
     <script type="module" src="index.22df84bb.js"></script>
+    
+    <style>
+        /* Emotion Selection Screen */
+        #emotionScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 100%);
+            padding: 40px 20px;
+        }
+        
+        #emotionScreen h1 {
+            font-size: 2.5rem;
+            color: #ff1493;
+            margin-bottom: 50px;
+            text-align: center;
+            font-family: 'Protest Strike', cursive;
+        }
+        
+        .emotion-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .emotion-btn {
+            padding: 30px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .emotion-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+        
+        .emotion-btn .emoji {
+            font-size: 3rem;
+        }
+        
+        .btn-sad {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .btn-missing {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .btn-anxious {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .btn-stressed {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .skip-btn {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255,105,180,0.4);
+        }
+        
+        .skip-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Background Music -->
@@ -20,7 +111,32 @@
         <source src="romantic.mp3" type="audio/mpeg">
     </audio>
 
-    <main>
+    <!-- EMOTION SELECTION SCREEN (NEW) -->
+    <div id="emotionScreen">
+        <h1>How Are You Feeling Today? 💕</h1>
+        <div class="emotion-grid">
+            <button class="emotion-btn btn-sad" onclick="goToCard(6)">
+                <span class="emoji">😢</span>
+                <span>Feeling Sad</span>
+            </button>
+            <button class="emotion-btn btn-missing" onclick="goToCard(7)">
+                <span class="emoji">💕</span>
+                <span>Missing You</span>
+            </button>
+            <button class="emotion-btn btn-anxious" onclick="goToCard(8)">
+                <span class="emoji">😰</span>
+                <span>Feeling Anxious</span>
+            </button>
+            <button class="emotion-btn btn-stressed" onclick="goToCard(9)">
+                <span class="emoji">😫</span>
+                <span>Feeling Stressed</span>
+            </button>
+        </div>
+        <button class="skip-btn" onclick="showCards()">Or Browse All Cards →</button>
+    </div>
+
+    <!-- ORIGINAL CARDS (HIDDEN BY DEFAULT) -->
+    <main id="cardsMain" class="hidden">
         <ul id="slider"></ul>
         <nav class="nav">
             <i class="btn prev ri-arrow-left-line"></i>
@@ -70,6 +186,7 @@
     </div>
 
     <script>
+        // Music toggle function
         function toggleMusic() {
             const music = document.getElementById('bgMusic');
             const btn = document.getElementById('musicBtn');
@@ -81,6 +198,23 @@
                 music.pause();
                 btn.textContent = '🔇';
             }
+        }
+
+        // Show the cards carousel
+        function showCards() {
+            document.getElementById('emotionScreen').classList.add('hidden');
+            document.getElementById('cardsMain').classList.remove('hidden');
+        }
+
+        // Go to specific card by index
+        function goToCard(index) {
+            showCards();
+            // Wait for cards to render, then navigate
+            setTimeout(() => {
+                // This will be handled by your existing JS logic
+                // The index.22df84bb.js should handle card navigation
+                window.currentCardIndex = index;
+            }, 100);
         }
     </script>
 </body>
