@@ -23,6 +23,51 @@
             background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* FLOATING HEARTS ANIMATION */
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .floating-heart {
+            position: fixed;
+            font-size: 25px;
+            animation: floatHeart linear infinite;
+            pointer-events: none;
+            z-index: 1;
+            color: rgba(255,105,180,0.6);
+        }
+        
+        /* SPARKLE ANIMATION */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #ff69b4;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: sparkle 2s ease-in-out infinite;
         }
         
         /* EMOTION SELECTION - REFLECTIVE, NOT TRANSACTIONAL */
@@ -33,6 +78,7 @@
             justify-content: center;
             min-height: 100vh;
             padding: 60px 30px;
+            position: relative;
         }
         
         #emotionScreen h1 {
@@ -43,6 +89,18 @@
             font-family: 'Inter', sans-serif;
             font-weight: 600;
             letter-spacing: -0.5px;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .emotion-subtitle {
@@ -52,6 +110,7 @@
             text-align: center;
             font-weight: 400;
             max-width: 500px;
+            animation: fadeInDown 0.8s ease 0.2s both;
         }
         
         /* VERTICAL STACK, NOT GRID - ENCOURAGES REFLECTION */
@@ -77,7 +136,24 @@
             align-items: center;
             gap: 18px;
             text-align: left;
+            animation: slideInLeft 0.6s ease both;
         }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .emotion-btn:nth-child(1) { animation-delay: 0.3s; }
+        .emotion-btn:nth-child(2) { animation-delay: 0.4s; }
+        .emotion-btn:nth-child(3) { animation-delay: 0.5s; }
+        .emotion-btn:nth-child(4) { animation-delay: 0.6s; }
         
         .emotion-btn:hover {
             transform: translateX(8px);
@@ -110,6 +186,18 @@
             font-weight: 500;
             box-shadow: 0 4px 15px rgba(255,105,180,0.25);
             transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease 0.7s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .surprise-btn:hover {
@@ -152,6 +240,7 @@
             display: none;
             min-height: 100vh;
             padding: 80px 20px 140px;
+            position: relative;
         }
         
         .card-container {
@@ -195,17 +284,6 @@
             animation: fadeInUp 0.6s ease 0.7s forwards;
         }
         
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         /* MEMORIES AS EMOTIONAL ANCHORS */
         .memories-intro {
             text-align: center;
@@ -233,6 +311,11 @@
             object-fit: cover;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease;
+        }
+        
+        .card-images img:hover {
+            transform: scale(1.02);
         }
         
         @media (min-width: 768px) {
@@ -353,6 +436,11 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             z-index: 100;
+            transition: transform 0.2s ease;
+        }
+        
+        .music-btn:hover {
+            transform: scale(1.1);
         }
         
         .hidden {
@@ -446,30 +534,59 @@
             {
                 emoji: "😢",
                 title: "I know it's heavy right now",
-                message: "Hey my love. I know today feels heavier than usual, and that’s okay. Not every day has to be amazing na— some days just need thoda patience and love. I want you to remember this: even on the days you don’t feel strong, you’re never alone.I’m right here — today, tomorrow, and every day after.Let's take small steps ek saath. ❤️",
+                message: "Hey my love. I know today feels heavier than usual, and that's okay. Not every day has to be amazing na— some days just need thoda patience and love. I want you to remember this: even on the days you don't feel strong, you're never alone. I'm right here — today, tomorrow, and every day after. Let's take small steps ek saath. ❤️",
                 images: ["images/image_00.jpg", "images/image_01.jpg", "images/image_02.jpg"]
             },
             {
                 emoji: "💕",
                 title: "I'm missing you too",
-                message: "I’m missing you like crazy too, Mangal. Even when we’re apart, I am always with you.Close your eyes for a second and imagine humare cuddles.Chal abh ye photos dekh 🥰",
+                message: "I'm missing you like crazy too, Mangal. Even when we're apart, I am always with you. Close your eyes for a second and imagine humare cuddles. Chal abh ye photos dekh 🥰",
                 images: ["images/image_03.jpg", "images/image_04.jpg", "images/image_05.jpg"]
             },
             {
                 emoji: "😰",
                 title: "Breathe with me",
                 message: "Take a deep breath with me, babe. Whatever you're worried about, we'll handle it together. You've overcome so much already - this is just another chapter. I believe in you, always. 💪❤️",
-                images: ["images/imag_06.jpg", "images/image_07.jpg", "images/image_08.jpg"]
+                images: ["images/image_06.jpg", "images/image_07.jpg", "images/image_08.jpg"]
             },
             {
                 emoji: "😫",
-                title: "You’re doing more than enough",
+                title: "You're doing more than enough",
                 message: "I know you're juggling a lot right now, and I'm so proud of how hard you work. Remember to take breaks and breathe. You don't have to do everything perfectly - you're already amazing just as you are. Call karde sidha 🌟",
                 images: ["images/image_09.jpg", "images/image_10.jpg", "images/image_11.jpg"]
             }
         ];
 
         let currentCardIndex = 0;
+
+        // CREATE FLOATING HEARTS
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = ['💕', '💗', '💖', '💝'][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 10000);
+        }
+
+        // CREATE SPARKLES
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+
+        // Start animations
+        setInterval(createFloatingHeart, 1000);
+        setInterval(createSparkle, 500);
 
         function selectEmotion(index, emoji) {
             currentCardIndex = index;
@@ -553,5 +670,3 @@
     </script>
 </body>
 </html>
-
-
