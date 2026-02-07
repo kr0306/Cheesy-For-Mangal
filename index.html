@@ -41,7 +41,7 @@
       z-index: 1;
     }
 
-    /* Romantic heading */
+    /* Romantic heading - RESPONSIVE */
     .romantic-heading {
       font-family: "Brush Script MT", cursive;
       font-size: 3.5rem;
@@ -59,6 +59,14 @@
       box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
     }
 
+    @media (max-width: 768px) {
+      .romantic-heading {
+        font-size: 2rem;
+        top: 20px;
+        padding: 8px 20px;
+      }
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -70,7 +78,7 @@
       }
     }
 
-    /* Days counter */
+    /* Days counter - RESPONSIVE */
     .days-counter {
       position: fixed;
       bottom: 80px;
@@ -86,13 +94,67 @@
       animation: pulse 2s ease-in-out infinite;
     }
 
+    @media (max-width: 768px) {
+      .days-counter {
+        bottom: 90px;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 1rem;
+        padding: 10px 18px;
+      }
+    }
+
     @keyframes pulse {
-      0%,
-      100% {
+      0%, 100% {
         transform: scale(1);
       }
       50% {
         transform: scale(1.05);
+      }
+    }
+
+    @media (max-width: 768px) {
+      @keyframes pulse {
+        0%, 100% {
+          transform: translateX(50%) scale(1);
+        }
+        50% {
+          transform: translateX(50%) scale(1.05);
+        }
+      }
+    }
+
+    /* MOBILE LAYOUT FIXES */
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto !important;
+        height: auto !important;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        flex-direction: column !important;
+        gap: 30px !important;
+        padding: 100px 20px 140px !important;
+      }
+
+      .love-letter-section {
+        margin-right: 0 !important;
+        width: 100% !important;
+      }
+
+      /* Hide floating hearts on mobile for cleaner experience */
+      .heart-img {
+        display: none;
+      }
+
+      /* Adjust envelope for mobile */
+      .valentines {
+        position: relative !important;
+        bottom: auto !important;
+        right: auto !important;
+        transform: none !important;
+        margin: 30px auto !important;
       }
     }
   </style>
@@ -108,7 +170,7 @@
   <!-- Heading -->
   <h1 class="romantic-heading">For my dear Mangal 💕</h1>
 
-  <div class="flex gap-10 items-center justify-center">
+  <div class="main-container flex gap-10 items-center justify-center">
     <!-- Gallery -->
     <div class="gallery-container">
       <div class="gallery">
@@ -123,7 +185,7 @@
     </div>
 
     <!-- Love Letter -->
-    <div class="flex flex-col items-center justify-center w-full text-center mr-16">
+    <div class="love-letter-section flex flex-col items-center justify-center w-full text-center mr-16">
       <div id="message-container" class="hidden mt-4 w-full max-w-2xl">
         <h2 class="text-2xl text-red-500 font-bold">
           Valentines Day Letter
@@ -152,7 +214,7 @@
     <div class="front"></div>
   </div>
 
-  <!-- Floating Hearts -->
+  <!-- Floating Hearts (hidden on mobile) -->
   <img src="Images/pinkheart.png" class="heart-img" style="top: 10%; left: 5%" />
   <img src="Images/pinkheart.png" class="heart-img" style="top: 20%; left: 90%" />
   <img src="Images/pinkheart.png" class="heart-img" style="top: 50%; left: 10%" />
@@ -177,7 +239,11 @@
         border-radius: 50%;
         font-size: 18px;
         cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255,105,180,0.4);
+        transition: transform 0.2s;
       "
+      onmouseover="this.style.transform='scale(1.1)'"
+      onmouseout="this.style.transform='scale(1)'"
     >
       🎵
     </button>
@@ -204,6 +270,7 @@
         font-size: 14px;
         font-weight: bold;
         cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255,105,180,0.4);
       "
     >
       💌 Special Messages for Cutu Mangal
