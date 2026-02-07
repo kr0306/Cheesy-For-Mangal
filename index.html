@@ -41,7 +41,7 @@
       z-index: 1;
     }
 
-    /* Romantic heading - RESPONSIVE */
+    /* Romantic heading */
     .romantic-heading {
       font-family: "Brush Script MT", cursive;
       font-size: 3.5rem;
@@ -59,14 +59,6 @@
       box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
     }
 
-    @media (max-width: 768px) {
-      .romantic-heading {
-        font-size: 2rem;
-        top: 20px;
-        padding: 8px 20px;
-      }
-    }
-
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -78,7 +70,7 @@
       }
     }
 
-    /* Days counter - RESPONSIVE */
+    /* Days counter */
     .days-counter {
       position: fixed;
       bottom: 80px;
@@ -94,16 +86,6 @@
       animation: pulse 2s ease-in-out infinite;
     }
 
-    @media (max-width: 768px) {
-      .days-counter {
-        bottom: 90px;
-        right: 50%;
-        transform: translateX(50%);
-        font-size: 1rem;
-        padding: 10px 18px;
-      }
-    }
-
     @keyframes pulse {
       0%, 100% {
         transform: scale(1);
@@ -113,48 +95,135 @@
       }
     }
 
+    /* ===== MOBILE OPTIMIZATIONS ===== */
     @media (max-width: 768px) {
-      @keyframes pulse {
-        0%, 100% {
-          transform: translateX(50%) scale(1);
-        }
-        50% {
-          transform: translateX(50%) scale(1.05);
-        }
-      }
-    }
-
-    /* MOBILE LAYOUT FIXES */
-    @media (max-width: 768px) {
-      body {
-        overflow-y: auto !important;
+      /* Allow scrolling */
+      html, body {
         height: auto !important;
+        overflow-y: auto !important;
+      }
+
+      body {
+        display: block !important;
+        padding: 0 !important;
         min-height: 100vh;
       }
 
-      .main-container {
-        flex-direction: column !important;
-        gap: 30px !important;
-        padding: 100px 20px 140px !important;
+      /* Heading - smaller and higher */
+      .romantic-heading {
+        font-size: 1.8rem;
+        top: 15px;
+        padding: 8px 20px;
+        max-width: 90%;
+        text-align: center;
       }
 
+      /* Main content container - vertical stack */
+      .main-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 80px 15px 160px 15px !important;
+        gap: 30px !important;
+      }
+
+      /* Gallery - full width, centered */
+      .gallery-container {
+        position: relative !important;
+        left: auto !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+      }
+
+      /* Love letter section - remove margin */
       .love-letter-section {
         margin-right: 0 !important;
         width: 100% !important;
+        max-width: 400px !important;
       }
 
-      /* Hide floating hearts on mobile for cleaner experience */
-      .heart-img {
-        display: none;
+      #message-container {
+        max-width: 100% !important;
+        padding: 0 10px !important;
       }
 
-      /* Adjust envelope for mobile */
+      /* Heart icon - smaller on mobile */
+      #solid-heart {
+        font-size: 3.5rem !important;
+        margin-top: 20px !important;
+      }
+
+      /* Envelope - position in flow, not fixed */
       .valentines {
         position: relative !important;
-        bottom: auto !important;
+        left: auto !important;
         right: auto !important;
+        bottom: auto !important;
         transform: none !important;
-        margin: 30px auto !important;
+        margin: 20px auto 0 !important;
+      }
+
+      /* Days counter - centered above buttons */
+      .days-counter {
+        bottom: 100px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.95rem;
+        padding: 10px 18px;
+        white-space: nowrap;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          transform: translateX(-50%) scale(1);
+        }
+        50% {
+          transform: translateX(-50%) scale(1.05);
+        }
+      }
+
+      /* Hide floating hearts on mobile - too cluttered */
+      .heart-img {
+        display: none !important;
+      }
+
+      /* Bottom buttons - stack if needed */
+      .bottom-buttons {
+        bottom: 15px !important;
+      }
+
+      .music-button-container {
+        bottom: 15px !important;
+        left: 15px !important;
+      }
+
+      .cards-button-container {
+        bottom: 15px !important;
+      }
+
+      .cards-button-container button {
+        padding: 8px 16px !important;
+        font-size: 12px !important;
+      }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 400px) {
+      .romantic-heading {
+        font-size: 1.5rem;
+        padding: 6px 15px;
+      }
+
+      .days-counter {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+      }
+
+      #solid-heart {
+        font-size: 3rem !important;
       }
     }
   </style>
@@ -174,13 +243,13 @@
     <!-- Gallery -->
     <div class="gallery-container">
       <div class="gallery">
-        <img src="Images/image1.jpg" />
-        <img src="Images/image2.jpg" />
-        <img src="Images/image3.jpg" />
-        <img src="Images/image4.jpg" />
-        <img src="Images/image5.jpg" />
-        <img src="Images/image6.jpg" />
-        <img src="Images/image7.jpg" />
+        <img src="Images/image1.jpg" alt="Memory 1" />
+        <img src="Images/image2.jpg" alt="Memory 2" />
+        <img src="Images/image3.jpg" alt="Memory 3" />
+        <img src="Images/image4.jpg" alt="Memory 4" />
+        <img src="Images/image5.jpg" alt="Memory 5" />
+        <img src="Images/image6.jpg" alt="Memory 6" />
+        <img src="Images/image7.jpg" alt="Memory 7" />
       </div>
     </div>
 
@@ -198,36 +267,36 @@
         class="fa-solid fa-heart fa-beat fa-5x text-red-500 cursor-pointer hover:text-red-700 mt-6"
       ></i>
     </div>
-  </div>
 
-  <!-- Valentines Envelope -->
-  <div class="valentines">
-    <div class="envelope">
-      <div class="card">
-        <div class="text">
-          Shreya <br />
-          Mangal
+    <!-- Valentines Envelope -->
+    <div class="valentines">
+      <div class="envelope">
+        <div class="card">
+          <div class="text">
+            Shreya <br />
+            Mangal
+          </div>
+          <div class="heart"></div>
         </div>
-        <div class="heart"></div>
       </div>
+      <div class="front"></div>
     </div>
-    <div class="front"></div>
   </div>
 
-  <!-- Floating Hearts (hidden on mobile) -->
-  <img src="Images/pinkheart.png" class="heart-img" style="top: 10%; left: 5%" />
-  <img src="Images/pinkheart.png" class="heart-img" style="top: 20%; left: 90%" />
-  <img src="Images/pinkheart.png" class="heart-img" style="top: 50%; left: 10%" />
-  <img src="Images/pinkheart.png" class="heart-img" style="top: 83%; left: 75%" />
-  <img src="Images/pinkheart.png" class="heart-img" style="top: 90%; left: 20%" />
-  <img src="Images/pinkheart.png" class="heart-img" style="top: 2%; left: 70%" />
-  <img src="Images/pinkheart.png" class="heart-img" style="top: 2%; left: 33%" />
+  <!-- Floating Hearts -->
+  <img src="Images/pinkheart.png" class="heart-img" style="top: 10%; left: 5%" alt="" />
+  <img src="Images/pinkheart.png" class="heart-img" style="top: 20%; left: 90%" alt="" />
+  <img src="Images/pinkheart.png" class="heart-img" style="top: 50%; left: 10%" alt="" />
+  <img src="Images/pinkheart.png" class="heart-img" style="top: 83%; left: 75%" alt="" />
+  <img src="Images/pinkheart.png" class="heart-img" style="top: 90%; left: 20%" alt="" />
+  <img src="Images/pinkheart.png" class="heart-img" style="top: 2%; left: 70%" alt="" />
+  <img src="Images/pinkheart.png" class="heart-img" style="top: 2%; left: 33%" alt="" />
 
   <!-- Days Counter -->
   <div class="days-counter" id="daysCounter">Loading...</div>
 
   <!-- Music Button -->
-  <div style="position: fixed; bottom: 20px; left: 20px; z-index: 100">
+  <div class="music-button-container" style="position: fixed; bottom: 20px; left: 20px; z-index: 100">
     <button
       id="musicBtn"
       onclick="toggleMusic()"
@@ -251,6 +320,7 @@
 
   <!-- Cards Button -->
   <div
+    class="cards-button-container"
     style="
       position: fixed;
       bottom: 20px;
