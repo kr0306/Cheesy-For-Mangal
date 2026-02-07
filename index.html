@@ -5,31 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cheesy Love Letter</title>
 
-    <!-- Favicon (Tab Icon) -->
     <link rel="icon" href="icon.2e23c991.ico">
-
-    <!-- Font Awesome for heart icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
-    
+
     <style>
-        /* Falling hearts animation */
         @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
-        
+
         .falling-heart {
             position: fixed;
             font-size: 20px;
@@ -37,14 +23,12 @@
             pointer-events: none;
             z-index: 1;
         }
-        
-        /* Romantic heading style - CENTERED AT TOP */
+
         .romantic-heading {
             font-family: 'Brush Script MT', cursive;
             font-size: 3.5rem;
             color: #ff1493;
             text-shadow: 3px 3px 6px rgba(255,105,180,0.5);
-            animation: fadeIn 2s ease-in;
             position: fixed;
             top: 40px;
             left: 50%;
@@ -55,13 +39,7 @@
             border-radius: 20px;
             box-shadow: 0 4px 20px rgba(255,105,180,0.3);
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-        
-        /* Days counter - BOTTOM RIGHT, STANDS OUT */
+
         .days-counter {
             position: fixed;
             bottom: 80px;
@@ -74,148 +52,166 @@
             border-radius: 30px;
             box-shadow: 0 6px 20px rgba(255,105,180,0.5);
             z-index: 100;
-            animation: pulse 2s ease-in-out infinite;
         }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+        /* ===================== */
+        /* MOBILE OPTIMIZATION   */
+        /* ===================== */
+        @media (max-width: 768px) {
+
+            body {
+                flex-direction: column;
+                height: auto;
+                padding-top: 120px;
+                padding-bottom: 160px;
+            }
+
+            .romantic-heading {
+                font-size: 2rem;
+                padding: 8px 20px;
+                top: 20px;
+                width: max-content;
+                max-width: 90%;
+                text-align: center;
+            }
+
+            .flex.gap-10 {
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .gallery-container {
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .gallery img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            #message-container {
+                max-width: 100%;
+                padding: 0 0.5rem;
+            }
+
+            #solid-heart {
+                font-size: 3rem;
+                margin-top: 1.5rem;
+            }
+
+            .days-counter {
+                bottom: 120px;
+                right: 50%;
+                transform: translateX(50%);
+                font-size: 1.1rem;
+                padding: 12px 20px;
+            }
+
+            .valentines {
+                transform: scale(0.85);
+            }
+
+            .heart-img {
+                width: 40px;
+            }
+
+            button {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
-<!-- Background Music -->
+
 <audio id="bgMusic" loop>
     <source src="romantic.mp3" type="audio/mpeg">
 </audio>
 
 <body class="flex justify-center items-center w-screen h-screen bg-pink-100">
 
-    <!-- Romantic Heading - CENTERED AT TOP -->
-    <h1 class="romantic-heading">For my dear Mangal 💕</h1>
+<h1 class="romantic-heading">For my dear Mangal 💕</h1>
 
-    <div class="flex gap-10 items-center justify-center">
-        <!-- Photo Gallery (shifted left) -->
-        <div class="gallery-container">
-            <div class="gallery">
-                <img src="Images/image1.jpg">
-                <img src="Images/image2.jpg">
-                <img src="Images/image3.jpg">
-                <img src="Images/image4.jpg">
-                <img src="Images/image5.jpg">
-                <img src="Images/image6.jpg">  
-                <img src="Images/image7.jpg">     
-            </div>
-        </div>
-
-        <!-- Love Letter Section -->
-        <div class="flex flex-col items-center justify-center w-full text-center mr-16">
-            <div id="message-container" class="hidden mt-4 w-full max-w-2xl">
-                <h2 class="text-2xl text-red-500 font-bold"> Valentines Day Letter </h2>
-                <article id="message" class="prose mt-4"></article>
-            </div>
-            
-            <!-- Heart Button -->
-            <i id="solid-heart" class="fa-solid fa-heart fa-beat fa-5x text-red-500 cursor-pointer hover:text-red-700 mt-6"></i>
+<div class="flex gap-10 items-center justify-center">
+    <div class="gallery-container">
+        <div class="gallery">
+            <img src="Images/image1.jpg">
+            <img src="Images/image2.jpg">
+            <img src="Images/image3.jpg">
+            <img src="Images/image4.jpg">
+            <img src="Images/image5.jpg">
+            <img src="Images/image6.jpg">
+            <img src="Images/image7.jpg">
         </div>
     </div>
 
-    <!-- Valentines Envelope -->
-    <div class="valentines">
-        <div class="envelope">
-            <div class="card">
-                <div class="text">
-                Shreya <br> Mangal
-                </div>
-                <div class="heart"></div>
-            </div>
+    <div class="flex flex-col items-center justify-center w-full text-center">
+        <div id="message-container" class="hidden mt-4 w-full max-w-2xl">
+            <h2 class="text-2xl text-red-500 font-bold">Valentines Day Letter</h2>
+            <article id="message" class="prose mt-4"></article>
         </div>
-        <div class="front"></div>
+
+        <i id="solid-heart" class="fa-solid fa-heart fa-beat fa-5x text-red-500 cursor-pointer mt-6"></i>
     </div>
+</div>
 
-    <!-- Floating Hearts -->
-    <img src="Images/pinkheart.png" class="heart-img" style="top: 10%; left: 5%;">
-    <img src="Images/pinkheart.png" class="heart-img" style="top: 20%; left: 90%;">
-    <img src="Images/pinkheart.png" class="heart-img" style="top: 50%; left: 10%;">
-    <img src="Images/pinkheart.png" class="heart-img" style="top: 83%; left: 75%;">
-    <img src="Images/pinkheart.png" class="heart-img" style="top: 90%; left: 20%;">
-    <img src="Images/pinkheart.png" class="heart-img" style="top: 2%; left: 70%;">
-    <img src="Images/pinkheart.png" class="heart-img" style="top: 2%; left: 33%;">  
-
-    <!-- Days Counter - BOTTOM RIGHT, POPS OUT -->
-    <div class="days-counter" id="daysCounter">Loading...</div>
-
-    <!-- Music Control Button - BOTTOM LEFT -->
-    <div style="position: fixed; bottom: 20px; left: 20px; z-index: 100;">
-        <button id="musicBtn" onclick="toggleMusic()" 
-                style="background: linear-gradient(45deg, #ff69b4, #ff1493); 
-                       color: white; 
-                       padding: 12px 16px; 
-                       border: none; 
-                       border-radius: 50%; 
-                       font-size: 18px; 
-                       cursor: pointer; 
-                       box-shadow: 0 4px 15px rgba(255,105,180,0.4);
-                       transition: transform 0.2s;"
-                onmouseover="this.style.transform='scale(1.1)'"
-                onmouseout="this.style.transform='scale(1)'">
-            🎵
-        </button>
+<div class="valentines">
+    <div class="envelope">
+        <div class="card">
+            <div class="text">Shreya <br> Mangal</div>
+            <div class="heart"></div>
+        </div>
     </div>
+    <div class="front"></div>
+</div>
 
-    <!-- SMALL BUTTON AT BOTTOM - CENTERED -->
-    <div style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100;">
-        <button onclick="window.location.href='cards/index.html'" 
-                style="background: linear-gradient(45deg, #ff69b4, #ff1493); color: white; padding: 10px 20px; border: none; border-radius: 25px; font-size: 14px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 15px rgba(255,105,180,0.4);">
-            💌 Special Messages for Cutu Mangal
-        </button>
-    </div>
+<img src="Images/pinkheart.png" class="heart-img" style="top:10%;left:5%;">
+<img src="Images/pinkheart.png" class="heart-img" style="top:20%;left:90%;">
+<img src="Images/pinkheart.png" class="heart-img" style="top:50%;left:10%;">
+<img src="Images/pinkheart.png" class="heart-img" style="top:83%;left:75%;">
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.2/markdown-it.min.js"></script>
-    <script src="script.js"></script>
-    
-    <script>
-        // Music toggle function
-        function toggleMusic() {
-            const music = document.getElementById('bgMusic');
-            const btn = document.getElementById('musicBtn');
-            
-            if (music.paused) {
-                music.play();
-                btn.textContent = '🎵';
-            } else {
-                music.pause();
-                btn.textContent = '🔇';
-            }
-        }
-        
-        // Days counter - March 10, 2024
-        function updateDaysCounter() {
-            const startDate = new Date('2024-03-10');
-            const today = new Date();
-            const diffTime = Math.abs(today - startDate);
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            
-            document.getElementById('daysCounter').textContent = 
-                `${diffDays} days together ❤️`;
-        }
-        
-        // Falling hearts animation
-        function createFallingHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'falling-heart';
-            heart.innerHTML = '💕';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 7000);
-        }
-        
-        // Initialize
-        updateDaysCounter();
-        setInterval(createFallingHeart, 800);
-    </script>
+<div class="days-counter" id="daysCounter">Loading...</div>
+
+<div style="position:fixed;bottom:20px;left:20px;z-index:100;">
+    <button id="musicBtn" onclick="toggleMusic()">🎵</button>
+</div>
+
+<div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:100;">
+    <button onclick="window.location.href='cards/index.html'">
+        💌 Special Messages for Cutu Mangal
+    </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.2/markdown-it.min.js"></script>
+<script src="script.js"></script>
+
+<script>
+function toggleMusic() {
+    const music = document.getElementById('bgMusic');
+    music.paused ? music.play() : music.pause();
+}
+
+function updateDaysCounter() {
+    const startDate = new Date('2024-03-10');
+    const today = new Date();
+    const diffDays = Math.floor(Math.abs(today - startDate) / (1000 * 60 * 60 * 24));
+    document.getElementById('daysCounter').textContent = `${diffDays} days together ❤️`;
+}
+
+function createFallingHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'falling-heart';
+    heart.innerHTML = '💕';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+}
+
+updateDaysCounter();
+setInterval(createFallingHeart, 900);
+</script>
+
 </body>
 </html>
